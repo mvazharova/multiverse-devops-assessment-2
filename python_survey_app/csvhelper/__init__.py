@@ -25,3 +25,20 @@ def remove_duplicates(data_array):
             unique_data.append(row)
             seen.add(row[0])
     return unique_data
+
+# Ticket 3
+def ignore_empty_lines(data_deduplication):
+    new_list = []
+    for line in data_deduplication:
+        if line:
+            is_empty = True
+            for char in line:
+                if char not in [' ','', '\t', '\n', '\r']:
+                    is_empty = False
+                    break
+            if not is_empty:
+                new_list.append(line)
+
+    # print non-empty lines
+    for line in new_list:
+        return line
