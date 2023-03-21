@@ -9,3 +9,9 @@ def get_input(filename):
             # line_list = clean_line.split(',')
             # data.append(line_list)
             data.append(line.strip().split(','))
+
+# Ticket 1
+def read_a_csv_file(filename):
+    with open(filename, newline='') as csvfile:
+        data = list(csv.reader(csvfile))
+        return data
