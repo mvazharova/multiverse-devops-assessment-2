@@ -15,3 +15,13 @@ def read_a_csv_file(filename):
     with open(filename, newline='') as csvfile:
         data = list(csv.reader(csvfile))
         return data
+    
+# Ticket 2
+def remove_duplicates(data_array):
+    unique_data = []
+    seen = set()
+    for row in data_array:
+        if row[0] not in seen:
+            unique_data.append(row)
+            seen.add(row[0])
+    return unique_data
