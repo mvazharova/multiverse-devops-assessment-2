@@ -9,7 +9,8 @@ def main():
     data_deduplication = remove_duplicates(data_array)
     # Ticket 3
     data_without_empty_lines = ignore_empty_lines(data_deduplication)
-
+    # Ticket 4
+    data_capitalisation = capitalise_name_fields(data_without_empty_lines)
 
 if __name__ == '__main__':
     sys.exit(main())

@@ -41,3 +41,8 @@ def ignore_empty_lines(data_deduplication):
                 new_list.append(line)
 
     return new_list
+
+#Ticket 4
+def capitalise_name_fields(data_without_empty_lines):
+    capitalized_data = [[row[0], row[1].capitalize(), row[2].capitalize()] + row[3:] for row in data_without_empty_lines]
+    print(capitalized_data) 
