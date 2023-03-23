@@ -11,6 +11,8 @@ def main():
     data_without_empty_lines = ignore_empty_lines(data_deduplication)
     # Ticket 4
     data_capitalisation = capitalise_name_fields(data_without_empty_lines)
+    # Ticket 5
+    data_validate_ans3 = validate_ans3(data_capitalisation)
 
 if __name__ == '__main__':
     sys.exit(main())
