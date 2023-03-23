@@ -45,4 +45,15 @@ def ignore_empty_lines(data_deduplication):
 #Ticket 4
 def capitalise_name_fields(data_without_empty_lines):
     capitalized_data = [[row[0], row[1].capitalize(), row[2].capitalize()] + row[3:] for row in data_without_empty_lines]
-    print(capitalized_data) 
+    return capitalized_data
+
+# Ticket 5
+def validate_ans3(data_capitalisation):
+    new_list = []
+
+    for row in data_capitalisation:
+        # check if the value in the 5th index column is a valid integer string
+        if row[5].isdigit() and 1 <= int(row[5]) <= 10:
+            new_list.append(row)
+
+    return new_list
