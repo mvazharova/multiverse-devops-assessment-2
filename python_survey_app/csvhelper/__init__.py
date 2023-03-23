@@ -26,6 +26,7 @@ def remove_duplicates(data_array):
             seen.add(row[0])
     return unique_data
 
+
 # Ticket 3
 def ignore_empty_lines(data_deduplication):
     new_list = []
@@ -39,6 +40,4 @@ def ignore_empty_lines(data_deduplication):
             if not is_empty:
                 new_list.append(line)
 
-    # print non-empty lines
-    for line in new_list:
-        return line
+    return new_list

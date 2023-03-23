@@ -10,5 +10,6 @@ def main():
     # Ticket 3
     data_without_empty_lines = ignore_empty_lines(data_deduplication)
 
+
 if __name__ == '__main__':
     sys.exit(main())
