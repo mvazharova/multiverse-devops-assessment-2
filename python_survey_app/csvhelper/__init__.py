@@ -57,3 +57,18 @@ def validate_ans3(data_capitalisation):
             new_list.append(row)
 
     return new_list
+
+# Ticket 6
+def write_clean_data(data_validate_ans3, filename):
+    with open(filename, mode='w', newline='') as file:
+        headers = ['User ID', 'First Name', 'Last Name', 'Answer 1', 'Answer 2', 'Answer 3']
+
+        writer = csv.writer(file)
+        writer.writerow(headers) 
+
+        # write the data to the file
+        for row in data_validate_ans3:
+            writer.writerow(row)
+
+        # print a message to indicate that the file has been created
+        print('New CSV file created.')
