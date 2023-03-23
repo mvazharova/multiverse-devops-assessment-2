@@ -70,5 +70,17 @@ def write_clean_data(data_validate_ans3, filename):
         for row in data_validate_ans3:
             writer.writerow(row)
 
-        # print a message to indicate that the file has been created
-        print('New CSV file created.')
+
+# Ticket 7 
+def print_clean_data(filename):
+    """
+    Reads in the clean data file and prints the results to the console,
+    row by row, with appropriate headers and fixed length strings.
+    """
+    reader = read_a_csv_file(filename)
+    header = ["User ID", "First Name", "Last Name", "Answer 1", "Answer 2", "Answer 3"]
+    print(f"{header[0]:<10}{header[1]:<15}{header[2]:<15}{header[3]:<15}{header[4]:<15}{header[5]:<15}")
+    for i, row in enumerate(reader):
+        if i == 0:
+            continue # skip headers
+        print(f"{row[0]:<10}{row[1]:<15}{row[2]:<15}{row[3]:<15}{row[4]:<15}{row[5]:<15}")
