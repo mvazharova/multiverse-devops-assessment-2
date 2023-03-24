@@ -9,12 +9,12 @@ filename = "results.csv"
 ############### Ticket 1 ###############
 ########################################
 
-# Test 1 - Check the file exists 
+# Test 1 - Test case to check the file exists 
 def test_file_exists():
     file_exists = Path(filename).is_file()
     assert file_exists == True
 
-# Test 2 - Verify that when a file that doesn't exist is provided, the method raises a FileNotFoundError.
+# Test 2 - Test case for FileNotFoundError when a file that doesn't exist is provided
 def test_read_a_csv_file_nonexistent_file():
     # Arrange
     filename_nonexisting = 'nonexistent_file.csv'
@@ -25,7 +25,7 @@ def test_read_a_csv_file_nonexistent_file():
     with pytest.raises(FileNotFoundError):
         result = read_a_csv_file(filename_nonexisting)
 
-# Test 3 - Check that when an empty file is passed to the function, it produces an empty list.
+# Test 3 - Test case for producing empty list when an empty file is passed to the function
 def test_read_a_csv_file_empty_file():
     # Arrange
     filename_empty = 'empty_file.csv'
@@ -43,7 +43,7 @@ def test_read_a_csv_file_empty_file():
     # Clean up
     os.remove(filename_empty)
 
-# Test 4 - Verify that when a non CSV file is provided, the method raises a ValueError.
+# Test 4 - Test case for raising ValueError when providing a non CSV file
 def test_read_a_csv_file_non_csv_file():
     # Arrange
     filename_non_csv = 'non_csv_file.txt'
@@ -184,3 +184,81 @@ def test_deduplication_multiple_nested_duplication_list():
 
     # Assert
     assert produced_array == expected_array
+
+########################################
+############### Ticket 3 ###############
+########################################
+
+# Test 1 - Test case for ignoring empty lines in an empty list
+def test_ignore_empty_lines_empty_list():
+    # Arrange
+    data_array = []
+
+    # Act
+    produced_array = ignore_empty_lines(data_array)
+
+    # Assert
+    assert produced_array == data_array
+
+# Test 2 - Test case for ignoring empty lines in list with no empty lines
+def test_ignore_empty_lines_no_empty_lines_list():
+    # Arrange
+    data_array = [
+        ['ID','Country','Capital City'],
+        ['1','Belgium','brussels'],
+        ['2','Japan','Tokyo']
+    ]
+
+
+    # Act
+    produced_array = ignore_empty_lines(data_array)
+
+    # Assert
+    assert produced_array == data_array
+
+# Test 3 - Test case for ignoring empty lines in list with one empty lines
+def test_ignore_empty_lines_one_empty_line_list():
+    # Arrange
+    data_array = [
+        ['ID','Country','Capital City'],
+        ['1','Belgium','brussels'],
+        ['2','Japan','Tokyo'],
+        ['','','']
+    ]
+
+    expected_array = [
+        ['ID','Country','Capital City'],
+        ['1','Belgium','brussels'],
+        ['2','Japan','Tokyo']
+    ]
+
+    # Act
+    produced_array = ignore_empty_lines(data_array)
+
+    # Assert
+    assert produced_array == expected_array
+
+# Test 4 - Test case for ignoring empty lines in list with multiple variations of empty lines
+def test_ignore_empty_lines_multiple_empty_lines_list():
+    # Arrange
+    data_array = [
+        ['ID','Country','Capital City'],
+        ['1','Belgium','brussels'],
+        ['2','Japan','Tokyo'],
+        ['','',''],
+        [' ',' ',' '],
+        ['\n','\n','\n']
+    ]
+
+    expected_array = [
+        ['ID','Country','Capital City'],
+        ['1','Belgium','brussels'],
+        ['2','Japan','Tokyo']
+    ]
+
+    # Act
+    produced_array = ignore_empty_lines(data_array)
+
+    # Assert
+    assert produced_array == expected_array
+
