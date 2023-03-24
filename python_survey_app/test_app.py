@@ -1,42 +1,58 @@
-from csvhelper import get_input 
+from csvhelper import * 
+from pathlib import Path
+import os
+import pytest
 
-#filename = "python-survey-app/results.csv"
 filename = "results.csv"
 
 # Ticket 1
 
-def test_input_is_list():
+# Test 1 - Check the file exists 
+def test_file_exists():
+    file_exists = Path(filename).is_file()
+    assert file_exists == True
+
+# Test 2 - Verify that when a file that doesn't exist is provided, the method raises a FileNotFoundError.
+def test_read_a_csv_file_nonexistent_file():
     # Arrange
-    expected_output = list
+    filename_nonexisting = 'nonexistent_file.csv'
+    if os.path.exists(filename_nonexisting):
+        os.remove(filename_nonexisting)
+
+    # Act and Assert
+    with pytest.raises(FileNotFoundError):
+        result = read_a_csv_file(filename_nonexisting)
+
+# Test 3 - Check that when an empty file is passed to the function, it produces an empty list.
+def test_read_a_csv_file_empty_file():
+    # Arrange
+    filename_empty = 'empty_file.csv'
+    with open(filename_empty, 'w') as csvfile:
+        pass
+
+    expected_output = []
 
     # Act
-    output = get_input(filename)
+    actual_output = read_a_csv_file(filename_empty)
 
     # Assert
-    assert type(output) == expected_output
+    assert actual_output == expected_output
 
+    # Clean up
+    os.remove(filename_empty)
 
-def test_input_is_correct():
+# Test 4 - Verify that when a non CSV file is provided, the method raises a ValueError.
+def test_read_a_csv_file_non_csv_file():
     # Arrange
-    expected_columns = ["user_id","first_name","last_name","answer_1","answer_2","answer_3"]
-    expected_rowcount = 25
+    filename_non_csv = 'non_csv_file.txt'
+    with open(filename_non_csv, 'w') as f:
+        pass
 
-    # Act
-    output = get_input(filename)
-    actual_columns = output[0]
-    actual_rowcount = len(output[1:])
-    # actual_rowcount = len(output) - 1
+    # Act and Assert
+    with pytest.raises(ValueError):
+        result = read_a_csv_file(filename_non_csv)
 
-    # Assert
-    # assert output_df.columns == expected_columns
-    # assert output[0] == expected_columns
-    # assert output_df.shape[0] == expected_rowcount
-    assert actual_columns == expected_columns
-    assert actual_rowcount == expected_rowcount
-
-# shape[0] would show the number of rows
-# shape[1] would show the number of columns
+    # Clean up
+    os.remove(filename_non_csv)
 
 
-def test_input_fails_if_file_not_found():
-    pass
