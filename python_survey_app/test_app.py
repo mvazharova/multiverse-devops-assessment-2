@@ -64,58 +64,58 @@ def test_read_a_csv_file_non_csv_file():
 # Test 1 - Test case for removing duplicates from an empty list
 def test_deduplication_empty_list():
     # Arrange
-    data_array = []
+    actual_data = []
 
     # Act
-    produced_array = remove_duplicates(data_array)
+    produced_data = remove_duplicates(actual_data)
 
     # Assert
-    assert produced_array == data_array
+    assert produced_data == actual_data
 
 # Test 2 - Test case for removing duplicates from a list with no duplicates
 def test_deduplication_no_duplication_list():
     # Arrange
-    data_array = [
-        ['ID','Country','Capital City'],
+    actual_data = [
+        ['ID','Country','Capital'],
         ['1','Belgium','brussels'],
         ['2','Japan','Tokyo']
     ]
 
     # Act
-    produced_array = remove_duplicates(data_array)
+    produced_data = remove_duplicates(actual_data)
 
     # Assert
-    assert produced_array == data_array
+    assert produced_data == actual_data
 
 # # Test 3 - Test case for removing duplicates from a list with one duplicates
 def test_deduplication_one_duplication_list():
     # Arrange
-    data_array = [
-        ['ID','Country','Capital City'],
+    actual_data = [
+        ['ID','Country','Capital'],
         ['1','Belgium','brussels'],
         ['2','Japan','Tokyo'],
         ['3', 'Cuba', 'Havana'],
         ['3', 'Cuba', 'Havana']
     ]
 
-    expected_array = [
-        ['ID','Country','Capital City'],
+    expected_data = [
+        ['ID','Country','Capital'],
         ['1','Belgium','brussels'],
         ['2','Japan','Tokyo'],
         ['3', 'Cuba', 'Havana']
     ]
 
     # Act
-    produced_array = remove_duplicates(data_array)
+    produced_data = remove_duplicates(actual_data)
 
     # Assert
-    assert produced_array == expected_array
+    assert produced_data == expected_data
 
 # Test 4 - Test case for removing duplicates from a list with multiple duplicates
 def test_deduplication_multiple_duplications_list():
     # Arrange
-    data_array = [
-        ['ID','Country','Capital City'],
+    actual_data = [
+        ['ID','Country','Capital'],
         ['1','Belgium','brussels'],
         ['2','Japan','Tokyo'],
         ['3', 'Cuba', 'Havana'],
@@ -124,125 +124,125 @@ def test_deduplication_multiple_duplications_list():
         ['3', 'Cuba', 'Havana']
     ]
 
-    expected_array = [
-        ['ID','Country','Capital City'],
+    expected_data = [
+        ['ID','Country','Capital'],
         ['1','Belgium','brussels'],
         ['2','Japan','Tokyo'],
         ['3', 'Cuba', 'Havana']
     ]
 
     # Act
-    produced_array = remove_duplicates(data_array)
+    produced_data = remove_duplicates(actual_data)
 
     # Assert
-    assert produced_array == expected_array
+    assert produced_data == expected_data
 
 # Test 5 - Test case for removing duplicates from a list with one nested value duplicates
 def test_deduplication_nested_duplication_list():
     # Arrange
-    data_array = [
-        ['ID','Country','Capital City'],
+    actual_data = [
+        ['ID','Country','Capital'],
         ['1','Belgium','brussels'],
         ['2','Japan','Tokyo'],
         ['3', 'Cuba', ['Havana']],
         ['3', 'Cuba', ['Havana']]
     ]
 
-    expected_array = [
-        ['ID','Country','Capital City'],
+    expected_data = [
+        ['ID','Country','Capital'],
         ['1','Belgium','brussels'],
         ['2','Japan','Tokyo'],
         ['3', 'Cuba', ['Havana']]
     ]
 
     # Act
-    produced_array = remove_duplicates(data_array)
+    produced_data = remove_duplicates(actual_data)
 
     # Assert
-    assert produced_array == expected_array
+    assert produced_data == expected_data
 
 # Test 6 - Test case for removing duplicates from a list with multiple nested values duplicates
 def test_deduplication_multiple_nested_duplication_list():
     # Arrange
-    data_array = [
-        ['ID','Country','Capital City'],
+    actual_data = [
+        ['ID','Country','Capital'],
         ['1','Belgium','brussels'],
         ['2','Japan','Tokyo'],
         ['3', ['Cuba', 'Havana']],
         ['3', ['Cuba', 'Havana']]
     ]
 
-    expected_array = [
-        ['ID','Country','Capital City'],
+    expected_data = [
+        ['ID','Country','Capital'],
         ['1','Belgium','brussels'],
         ['2','Japan','Tokyo'],
         ['3', ['Cuba', 'Havana']]
     ]
 
     # Act
-    produced_array = remove_duplicates(data_array)
+    produced_data = remove_duplicates(actual_data)
 
     # Assert
-    assert produced_array == expected_array
+    assert produced_data == expected_data
 
 ########################################
 ############### Ticket 3 ###############
 ########################################
 
-# Test 1 - Test case for ignoring empty lines in an empty list
+# Test 1 - Test case for ignoring empty lines from an empty list
 def test_ignore_empty_lines_empty_list():
     # Arrange
-    data_array = []
+    actual_data = []
 
     # Act
-    produced_array = ignore_empty_lines(data_array)
+    produced_data = ignore_empty_lines(actual_data)
 
     # Assert
-    assert produced_array == data_array
+    assert produced_data == actual_data
 
 # Test 2 - Test case for ignoring empty lines in list with no empty lines
 def test_ignore_empty_lines_no_empty_lines_list():
     # Arrange
-    data_array = [
-        ['ID','Country','Capital City'],
+    actual_data = [
+        ['ID','Country','Capital'],
         ['1','Belgium','brussels'],
         ['2','Japan','Tokyo']
     ]
 
 
     # Act
-    produced_array = ignore_empty_lines(data_array)
+    produced_data = ignore_empty_lines(actual_data)
 
     # Assert
-    assert produced_array == data_array
+    assert produced_data == actual_data
 
 # Test 3 - Test case for ignoring empty lines in list with one empty lines
 def test_ignore_empty_lines_one_empty_line_list():
     # Arrange
-    data_array = [
-        ['ID','Country','Capital City'],
+    actual_data = [
+        ['ID','Country','Capital'],
         ['1','Belgium','brussels'],
         ['2','Japan','Tokyo'],
         ['','','']
     ]
 
-    expected_array = [
-        ['ID','Country','Capital City'],
+    expected_data = [
+        ['ID','Country','Capital'],
         ['1','Belgium','brussels'],
         ['2','Japan','Tokyo']
     ]
 
     # Act
-    produced_array = ignore_empty_lines(data_array)
+    produced_data = ignore_empty_lines(actual_data)
 
     # Assert
-    assert produced_array == expected_array
+    assert produced_data == expected_data
 
 # Test 4 - Test case for ignoring empty lines in list with multiple variations of empty lines
 def test_ignore_empty_lines_multiple_empty_lines_list():
     # Arrange
-    data_array = [
-        ['ID','Country','Capital City'],
+    actual_data = [
+        ['ID','Country','Capital'],
         ['1','Belgium','brussels'],
         ['2','Japan','Tokyo'],
         ['','',''],
@@ -250,15 +250,121 @@ def test_ignore_empty_lines_multiple_empty_lines_list():
         ['\n','\n','\n']
     ]
 
-    expected_array = [
-        ['ID','Country','Capital City'],
+    expected_data = [
+        ['ID','Country','Capital'],
         ['1','Belgium','brussels'],
         ['2','Japan','Tokyo']
     ]
 
     # Act
-    produced_array = ignore_empty_lines(data_array)
+    produced_data = ignore_empty_lines(actual_data)
 
     # Assert
-    assert produced_array == expected_array
+    assert produced_data == expected_data
 
+########################################
+############### Ticket 4 ###############
+########################################
+
+# Test 1 - Test case for capitalising names from an empty list
+def test_capitalisation_empty_list():
+    # Arrange
+    actual_data = []
+
+    # Act
+    produced_data = capitalise_name_fields(actual_data)
+
+    # Assert
+    assert produced_data == actual_data
+
+# Test 2 - Test case for capitalising names when input is lowercase
+def test_capitalisation_multiple_lowercase_list():
+    # Arrange
+    actual_data = [
+        ['ID','Country','Capital'],
+        ['1','Belgium','brussels'],
+        ['2','japan','Tokyo'],
+        ['3', 'cuba', 'havana']
+    ]
+
+    expected_data = [
+        ['ID','Country','Capital'], 
+        ['1','Belgium','Brussels'],
+        ['2','Japan','Tokyo'],
+        ['3', 'Cuba', 'Havana']
+    ]
+
+    # Act
+    produced_data = capitalise_name_fields(actual_data)
+
+    # Assert
+    assert produced_data == expected_data
+
+# Test 3 - Test case for capitalising names when input is uppercase
+def test_capitalisation_multiple_uppercase_list():
+    # Arrange
+    actual_data = [
+        ['ID','Country','Capital'],
+        ['1','BELGIUM','BRUSSELS'],
+        ['2','JAPAN','TOKYO'],
+        ['3', 'CUBA', 'havana']
+    ]
+
+    expected_data = [
+        ['ID','Country','Capital'], 
+        ['1','Belgium','Brussels'],
+        ['2','Japan','Tokyo'],
+        ['3', 'Cuba', 'Havana']
+    ]
+
+    # Act
+    produced_data = capitalise_name_fields(actual_data)
+
+    # Assert
+    assert produced_data == expected_data
+
+# Test 4 - Test case for capitalising names when input is mix-case
+def test_capitalisation_multiple_mixcase_list():
+    # Arrange
+    actual_data = [
+        ['ID','Country','Capital'],
+        ['1','BeLgIuM','bRuSsElS'],
+        ['2','japAN','TOKyo'],
+        ['3', 'cUBA', 'havana']
+    ]
+
+    expected_data = [
+        ['ID','Country','Capital'], 
+        ['1','Belgium','Brussels'],
+        ['2','Japan','Tokyo'],
+        ['3', 'Cuba', 'Havana']
+    ]
+
+    # Act
+    produced_data = capitalise_name_fields(actual_data)
+
+    # Assert
+    assert produced_data == expected_data
+
+# Test 5 - Test case for capitalising names when input has special and non-alphabetic characters
+def test_capitalisation_multiple_special_characters_list():
+    # Arrange
+    actual_data = [
+        ['ID','Country','Capital'],
+        ['1','BeLgIuM','Bru$$els'],
+        ['2','japAN1','T0KY0'],
+        ['3', 'cuba!', 'havana2']
+    ]
+
+    expected_data = [
+        ['ID','Country','Capital'], 
+        ['1','Belgium','Bru$$els'],
+        ['2','Japan1','T0ky0'],
+        ['3', 'Cuba!', 'Havana2']
+    ]
+
+    # Act
+    produced_data = capitalise_name_fields(actual_data)
+
+    # Assert
+    assert produced_data == expected_data
