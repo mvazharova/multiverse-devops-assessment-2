@@ -5,7 +5,9 @@ import pytest
 
 filename = "results.csv"
 
-# Ticket 1
+########################################
+############### Ticket 1 ###############
+########################################
 
 # Test 1 - Check the file exists 
 def test_file_exists():
@@ -55,4 +57,130 @@ def test_read_a_csv_file_non_csv_file():
     # Clean up
     os.remove(filename_non_csv)
 
+########################################
+############### Ticket 2 ###############
+########################################
 
+# Test 1 - Test case for removing duplicates from an empty list
+def test_deduplication_empty_list():
+    # Arrange
+    data_array = []
+
+    # Act
+    produced_array = remove_duplicates(data_array)
+
+    # Assert
+    assert produced_array == data_array
+
+# Test 2 - Test case for removing duplicates from a list with no duplicates
+def test_deduplication_no_duplication_list():
+    # Arrange
+    data_array = [
+        ['ID','Country','Capital City'],
+        ['1','Belgium','brussels'],
+        ['2','Japan','Tokyo']
+    ]
+
+    # Act
+    produced_array = remove_duplicates(data_array)
+
+    # Assert
+    assert produced_array == data_array
+
+# # Test 3 - Test case for removing duplicates from a list with one duplicates
+def test_deduplication_one_duplication_list():
+    # Arrange
+    data_array = [
+        ['ID','Country','Capital City'],
+        ['1','Belgium','brussels'],
+        ['2','Japan','Tokyo'],
+        ['3', 'Cuba', 'Havana'],
+        ['3', 'Cuba', 'Havana']
+    ]
+
+    expected_array = [
+        ['ID','Country','Capital City'],
+        ['1','Belgium','brussels'],
+        ['2','Japan','Tokyo'],
+        ['3', 'Cuba', 'Havana']
+    ]
+
+    # Act
+    produced_array = remove_duplicates(data_array)
+
+    # Assert
+    assert produced_array == expected_array
+
+# Test 4 - Test case for removing duplicates from a list with multiple duplicates
+def test_deduplication_multiple_duplications_list():
+    # Arrange
+    data_array = [
+        ['ID','Country','Capital City'],
+        ['1','Belgium','brussels'],
+        ['2','Japan','Tokyo'],
+        ['3', 'Cuba', 'Havana'],
+        ['1','Belgium','brussels'],
+        ['2','Japan','Tokyo'],
+        ['3', 'Cuba', 'Havana']
+    ]
+
+    expected_array = [
+        ['ID','Country','Capital City'],
+        ['1','Belgium','brussels'],
+        ['2','Japan','Tokyo'],
+        ['3', 'Cuba', 'Havana']
+    ]
+
+    # Act
+    produced_array = remove_duplicates(data_array)
+
+    # Assert
+    assert produced_array == expected_array
+
+# Test 5 - Test case for removing duplicates from a list with one nested value duplicates
+def test_deduplication_nested_duplication_list():
+    # Arrange
+    data_array = [
+        ['ID','Country','Capital City'],
+        ['1','Belgium','brussels'],
+        ['2','Japan','Tokyo'],
+        ['3', 'Cuba', ['Havana']],
+        ['3', 'Cuba', ['Havana']]
+    ]
+
+    expected_array = [
+        ['ID','Country','Capital City'],
+        ['1','Belgium','brussels'],
+        ['2','Japan','Tokyo'],
+        ['3', 'Cuba', ['Havana']]
+    ]
+
+    # Act
+    produced_array = remove_duplicates(data_array)
+
+    # Assert
+    assert produced_array == expected_array
+
+# Test 6 - Test case for removing duplicates from a list with multiple nested values duplicates
+def test_deduplication_multiple_nested_duplication_list():
+    # Arrange
+    data_array = [
+        ['ID','Country','Capital City'],
+        ['1','Belgium','brussels'],
+        ['2','Japan','Tokyo'],
+        ['3', ['Cuba', 'Havana']],
+        ['3', ['Cuba', 'Havana']]
+    ]
+
+    expected_array = [
+        ['ID','Country','Capital City'],
+        ['1','Belgium','brussels'],
+        ['2','Japan','Tokyo'],
+        ['3', ['Cuba', 'Havana']]
+    ]
+
+    # Act
+    produced_array = remove_duplicates(data_array)
+
+    # Assert
+    assert produced_array == expected_array
