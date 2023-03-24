@@ -368,3 +368,100 @@ def test_capitalisation_multiple_special_characters_list():
 
     # Assert
     assert produced_data == expected_data
+
+########################################
+############### Ticket 5 ###############
+########################################
+
+# Test 1 - Test case for validating numerical column from an empty list
+def test_validate_ans3_empty_list():
+    # Arrange
+    actual_data = []
+
+    # Act
+    produced_data = validate_ans3(actual_data)
+
+    # Assert
+    assert produced_data == actual_data
+
+# Test 2 - Test case for validating numerical column with empty value
+def test_validate_ans3_no_input_value_list():
+    # Arrange
+    actual_data = [
+        ['ID','Country','Capital', 'Elevation', 'Humidity','Score'], 
+        ['1','Belgium','Brussels', '13', '77', ''],
+        ['2','Japan','Tokyo', '40', '98', '1'],
+        ['3', 'Cuba', 'Havana', '59', '76', '7']
+    ]
+
+    expected_data = [
+        ['2','Japan','Tokyo', '40', '98', '1'],
+        ['3', 'Cuba', 'Havana', '59', '76', '7']
+    ]
+
+    # Act
+    produced_data = validate_ans3(actual_data)
+
+    # Assert
+    assert produced_data == expected_data
+
+# Test 3 - Test case for validating numerical column with zero as a value
+def test_validate_ans3_value_zero_list():
+    # Arrange
+    actual_data = [
+        ['ID','Country','Capital', 'Elevation', 'Humidity','Score'], 
+        ['1','Belgium','Brussels', '13', '77', '10'],
+        ['2','Japan','Tokyo', '40', '98', '1'],
+        ['3', 'Cuba', 'Havana', '59', '76', '0']
+    ]
+
+    expected_data = [
+        ['1','Belgium','Brussels', '13', '77', '10'],
+        ['2','Japan','Tokyo', '40', '98', '1']
+    ]
+
+    # Act
+    produced_data = validate_ans3(actual_data)
+
+    # Assert
+    assert produced_data == expected_data
+
+# Test 4 - Test case for validating numerical column with negative and above 10 value
+def test_validate_ans3_invalid_values_list():
+    # Arrange
+    actual_data = [
+        ['ID','Country','Capital', 'Elevation', 'Humidity','Score'], 
+        ['1','Belgium','Brussels', '13', '77', '10'],
+        ['2','Japan','Tokyo', '40', '98', '-11'],
+        ['3', 'Cuba', 'Havana', '59', '76', '20']
+    ]
+
+    expected_data = [
+        ['1','Belgium','Brussels', '13', '77', '10']
+    ]
+
+    # Act
+    produced_data = validate_ans3(actual_data)
+
+    # Assert
+    assert produced_data == expected_data
+
+# Test 5 - Test case for validating numerical column with string value
+def test_validate_ans3_string_values_list():
+    # Arrange
+    actual_data = [
+        ['ID','Country','Capital', 'Elevation', 'Humidity','Score'], 
+        ['1','Belgium','Brussels', '13', '77', 'two'],
+        ['2','Japan','Tokyo', '40', '98', '5'],
+        ['3', 'Cuba', 'Havana', '59', '76', 'none']
+    ]
+
+    expected_data = [
+        ['2','Japan','Tokyo', '40', '98', '5']
+    ]
+
+    # Act
+    produced_data = validate_ans3(actual_data)
+
+    # Assert
+    assert produced_data == expected_data
