@@ -465,3 +465,25 @@ def test_validate_ans3_string_values_list():
 
     # Assert
     assert produced_data == expected_data
+
+########################################
+############### Ticket 6 ###############
+########################################
+
+# Test 1 - Test case for validating that the output file is actually created for an empty list
+def test_write_empty_data(tmp_path):
+    # Arrange
+    data = []
+
+    file_path = tmp_path / 'test_write_empty_data.csv'
+
+    # Act
+    write_clean_data(data, str(file_path))
+
+    # Assert
+    with open(file_path) as file:
+        reader = csv.reader(file)
+        header = next(reader)
+        assert len(list(reader)) == 0
+        assert file_path.exists()
+
