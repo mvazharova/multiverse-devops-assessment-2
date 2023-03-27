@@ -12,6 +12,8 @@ def get_input(filename):
 
 # Ticket 1
 def read_a_csv_file(filename):
+    if not filename.endswith('.csv'):
+        raise ValueError('File is not a CSV file')
     with open(filename, newline='') as csvfile:
         data = list(csv.reader(csvfile))
         return data
