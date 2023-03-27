@@ -1,6 +1,7 @@
 resource "aws_s3_bucket" "this" {
-    bucket_prefix = "mvws9-maria"
+    bucket_prefix = "mvws9-claire"
     force_destroy = true
+    
     tags = {
         Name = "multiverse"
     }
