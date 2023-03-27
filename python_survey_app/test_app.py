@@ -1,9 +1,7 @@
 from csvhelper import * 
 from pathlib import Path
 import os
-import pytest
-
-filename = "results.csv"
+import pytest 
 
 ########################################
 ############### Ticket 1 ###############
@@ -11,6 +9,7 @@ filename = "results.csv"
 
 # Test 1 - Test case to check the file exists 
 def test_file_exists():
+    filename = "results.csv"
     file_exists = Path(filename).is_file()
     assert file_exists == True
 
@@ -487,3 +486,29 @@ def test_write_empty_data(tmp_path):
         assert len(list(reader)) == 0
         assert file_path.exists()
 
+########################################
+############### Ticket 7 ###############
+########################################
+
+# Test 1 - Test case for printing data to the console and checking it's accurate
+def test_print_clean_data(capsys):
+    file_path = 'python_survey_app/test_clean_results.csv'
+    
+    # Set up the expected output
+    expected_first_three_data = """User ID   First Name     Last Name      Answer 1       Answer 2       Answer 3       
+        1         Charissa       Clark          yes            c              7
+        2         Richard        Mckinney       yes            b              7
+        3         Patience       Reeves         yes            b              9
+        """
+    expected_output_cleaning = [line.strip() for line in expected_first_three_data.split('\n')]
+    expected_first_three = [line for line in expected_output_cleaning if line]  # remove any empty strings
+
+    # Call the function and capture its output
+    print_clean_data(file_path)
+    captured_output = capsys.readouterr()
+
+    # Split the captured output into lines and remove any leading/trailing white space
+    actual_output_cleaning = [line.strip() for line in captured_output.out.split('\n')]
+    actual_first_three = actual_output_cleaning[:4]
+
+    assert actual_first_three == expected_first_three
