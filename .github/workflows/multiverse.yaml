@@ -27,4 +27,4 @@ jobs:
 
     - name: Run Pytest
       run: pytest
-      working-directory: python-survey-app
+      working-directory: python_survey_app
