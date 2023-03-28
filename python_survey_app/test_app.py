@@ -492,7 +492,7 @@ def test_write_empty_data(tmp_path):
 
 # Test 1 - Test case for printing data to the console and checking it's accurate
 def test_print_clean_data(capsys):
-    file_path = 'python_survey_app/test_clean_results.csv'
+    file_path = 'test_clean_results.csv'
     
     # Set up the expected output
     expected_first_three_data = """User ID   First Name     Last Name      Answer 1       Answer 2       Answer 3       
