@@ -35,21 +35,38 @@ cat <<EOT >> /root/.aws/config
 region = eu-west-2
 EOT
 
+# cat <<EOT >> /root/mvws9.sh
+# #!/bin/bash
+# rm -rf /root/code
+# mkdir -p /root/code
+# aws s3 cp s3://${s3_bucket}/code.zip /tmp/code.zip
+# aws s3 cp s3://${s3_bucket}/script2.py /root/code/python_survey_app/script2.py
+# cd /root/code
+# unzip /tmp/code.zip
+# zip -r /tmp/code.zip .
+# aws s3 cp /tmp/code.zip s3://${s3_bucket}/code.zip
+# aws s3 cp s3://${s3_bucket}/results.csv /root/code/results.csv
+# pip3 install -r requirements.txt
+# python3 /root/code/python_survey_app/script1.py
+# cd /root/code/python_survey_app
+# python3 script2.py > /root/code/results.txt 2>&1
+# aws s3 cp /root/code/results.txt s3://${s3_bucket}/results.txt
+# EOT
+
+# cat <<EOT >> /etc/cron.d/mvws9
+# * * * * * root /bin/bash /root/mvws9.sh
+# EOT
+
+
 cat <<EOT >> /root/mvws9.sh
 #!/bin/bash
 rm -rf /root/code
 mkdir -p /root/code
 aws s3 cp s3://${s3_bucket}/code.zip /tmp/code.zip
-aws s3 cp s3://${s3_bucket}/script2.py /root/code/python_survey_app/script2.py
-cd /root/code
-unzip /tmp/code.zip
-zip -r /tmp/code.zip .
-aws s3 cp /tmp/code.zip s3://${s3_bucket}/code.zip
+unzip /tmp/code.zip -d /root/code/
 aws s3 cp s3://${s3_bucket}/results.csv /root/code/results.csv
-pip3 install -r requirements.txt
-python3 /root/code/python_survey_app/script1.py
-cd /root/code/python_survey_app
-python3 script2.py > /root/code/results.txt 2>&1
+python3 /root/code/script1.py
+python3 /root/code/script2.py > /root/code/results.txt
 aws s3 cp /root/code/results.txt s3://${s3_bucket}/results.txt
 EOT
 
