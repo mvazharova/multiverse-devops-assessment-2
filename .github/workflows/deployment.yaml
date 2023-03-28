@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: python-survey-app
+        working-directory: python_survey_app
     steps:
     - name: Checkout the repository
       uses: actions/checkout@v3
